@@ -12,7 +12,7 @@ import tech.gim.scroble.service.ShowService
 import timber.log.Timber
 import javax.inject.Inject
 
-class ScrobleApplication: Application() {
+class ScrobleApplication : Application() {
     val component: ApplicationComponent by lazy {
         DaggerApplicationComponent.builder()
             .applicationModule(ApplicationModule(this))
@@ -29,13 +29,13 @@ class ScrobleApplication: Application() {
         component.inject(this)
     }
 
-    fun checkInternetConnectivity(){
-        if(cm == null) cm = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    fun checkInternetConnectivity() {
+        if (cm == null) cm = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = cm!!.activeNetworkInfo
-        if(activeNetwork?.isConnectedOrConnecting == true){
+        if (activeNetwork?.isConnectedOrConnecting == true) {
             // OK
-        }else{
-            Toast.makeText(this, this.resources.getString(R.string.no_internet),Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(this, this.resources.getString(R.string.no_internet), Toast.LENGTH_LONG).show()
         }
     }
 }

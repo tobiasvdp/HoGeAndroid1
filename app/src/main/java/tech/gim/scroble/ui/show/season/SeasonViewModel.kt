@@ -11,7 +11,7 @@ import tech.gim.scroble.service.ImageService
 import tech.gim.scroble.service.ShowService
 import javax.inject.Inject
 
-class SeasonViewModel(private val context: ScrobleApplication) : AndroidViewModel(context)  {
+class SeasonViewModel(private val context: ScrobleApplication) : AndroidViewModel(context) {
     var minimizedShow: MinimizedShow? = null
     var season: Season? = null
     var episodes: LiveData<List<Episode>>? = null
@@ -30,7 +30,7 @@ class SeasonViewModel(private val context: ScrobleApplication) : AndroidViewMode
         minimizedShow = show
         season = se
 
-        if(minimizedShow != null && season != null){
+        if (minimizedShow != null && season != null) {
             episodes = showService.getEpisodesForSeason(minimizedShow!!.ids!!.trakt!!, season!!.number)
             images = imageService.getImagesForId(minimizedShow!!.ids)
         }

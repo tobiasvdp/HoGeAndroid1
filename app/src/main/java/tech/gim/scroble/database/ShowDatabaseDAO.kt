@@ -40,7 +40,6 @@ interface ShowDatabaseDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllDetailedShows(detailedShows: List<DetailedShow>)
 
-
     @Query("SELECT * FROM TRENDING_SHOWS ORDER BY WATCHERS DESC")
     fun getTrendingShows(): LiveData<List<TrendingShow>>
 
@@ -49,7 +48,6 @@ interface ShowDatabaseDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllTrendingShows(trendingShow: List<TrendingShow>)
-
 
     @Query("SELECT * FROM MOST_ANTICIPATED_SHOWS ORDER BY LIST_COUNT DESC")
     fun getMostAnticipatedShows(): LiveData<List<MostAnticipatedShow>>
@@ -60,7 +58,6 @@ interface ShowDatabaseDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllMostAnticipatedShows(show: List<MostAnticipatedShow>)
 
-
     @Query("SELECT * FROM MOST_RECOMENDED_SHOWS ORDER BY USER_COUNT DESC")
     fun getMostRecommendedShows(): LiveData<List<MostRecomendedShow>>
 
@@ -70,7 +67,6 @@ interface ShowDatabaseDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllMostRecommendedShows(show: List<MostRecomendedShow>)
 
-
     @Query("SELECT * FROM MOST_VIEWED_SHOWS ORDER BY WATCHER_COUNT DESC")
     fun getMostViewedShows(): LiveData<List<MostViewedShow>>
 
@@ -79,7 +75,6 @@ interface ShowDatabaseDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllMostViewedShows(trendingShow: List<MostViewedShow>)
-
 
     @Query("SELECT * FROM POPULAR_SHOWS ORDER BY PLACE ASC")
     fun getPopularShows(): LiveData<List<PopularShow>>

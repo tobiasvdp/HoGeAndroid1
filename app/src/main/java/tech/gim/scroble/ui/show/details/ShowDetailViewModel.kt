@@ -2,7 +2,6 @@ package tech.gim.scroble.ui.show.details
 
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import tech.gim.scroble.ScrobleApplication
 import tech.gim.scroble.model.DetailedShow
 import tech.gim.scroble.model.MinimizedShow
@@ -29,7 +28,7 @@ class ShowDetailViewModel(private val context: ScrobleApplication) : AndroidView
 
     fun setShow(show: MinimizedShow?) {
         minimizedShow = show
-        if(minimizedShow != null){
+        if (minimizedShow != null) {
             minimizedShow!!.ids?.trakt?.let {
                 detailedShow = showService.getShowDetails(it)
                 seasons = showService.getSeasonsForShow(it)

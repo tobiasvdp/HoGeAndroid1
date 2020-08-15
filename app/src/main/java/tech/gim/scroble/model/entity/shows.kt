@@ -57,9 +57,9 @@ class DetailedShow : Parcelable {
     var airedEpisodes: Int? = null
 }
 
-data class AirTime(@ColumnInfo(name = "AIR_DAY") var day: String? = "",@ColumnInfo(name = "AIR_TIME") var time: String? = "",@ColumnInfo(name = "AIR_TIMEZONE") var timezone: String? = "")
+data class AirTime(@ColumnInfo(name = "AIR_DAY") var day: String? = "", @ColumnInfo(name = "AIR_TIME") var time: String? = "", @ColumnInfo(name = "AIR_TIMEZONE") var timezone: String? = "")
 
-data class MinimizedShow (@ColumnInfo(name = "TITLE") var title: String? = "", @ColumnInfo(name = "YEAR") var year: Int? = -1, @Embedded var ids: ReferenceData? = ReferenceData())
+data class MinimizedShow(@ColumnInfo(name = "TITLE") var title: String? = "", @ColumnInfo(name = "YEAR") var year: Int? = -1, @Embedded var ids: ReferenceData? = ReferenceData())
 
 @Entity(tableName = "TRENDING_SHOWS")
 class TrendingShow() {
@@ -73,7 +73,7 @@ class TrendingShow() {
 }
 
 @Entity(tableName = "SEARCHED_SHOWS")
-class SearchedShow(){
+class SearchedShow() {
     @PrimaryKey
     @ColumnInfo(name = "TRAKT_ID")
     var traktId: Int = -1
@@ -84,7 +84,7 @@ class SearchedShow(){
 }
 
 @Entity(tableName = "MOST_VIEWED_SHOWS")
-class MostViewedShow(){
+class MostViewedShow() {
     @PrimaryKey
     @ColumnInfo(name = "TRAKT_ID")
     var traktId: Int = -1
@@ -93,7 +93,7 @@ class MostViewedShow(){
     @ColumnInfo(name = "PLAY_COUNT")
     var play_count: Int = -1
     @ColumnInfo(name = "COLLECTED_COUNT")
-    var collected_count:Int = -1
+    var collected_count: Int = -1
     @ColumnInfo(name = "COLLECTOR_COUNT")
     var collector_count: Int = -1
     @Embedded
@@ -101,7 +101,7 @@ class MostViewedShow(){
 }
 
 @Entity(tableName = "MOST_RECOMENDED_SHOWS")
-class MostRecomendedShow(){
+class MostRecomendedShow() {
     @PrimaryKey
     @ColumnInfo(name = "TRAKT_ID")
     var traktId: Int = -1
@@ -112,7 +112,7 @@ class MostRecomendedShow(){
 }
 
 @Entity(tableName = "MOST_ANTICIPATED_SHOWS")
-class MostAnticipatedShow(){
+class MostAnticipatedShow() {
     @PrimaryKey
     @ColumnInfo(name = "TRAKT_ID")
     var traktId: Int = -1
@@ -122,7 +122,7 @@ class MostAnticipatedShow(){
     var serie: MinimizedShow? = null
 }
 @Entity(tableName = "POPULAR_SHOWS")
-class PopularShow(){
+class PopularShow() {
     @PrimaryKey
     @ColumnInfo(name = "TRAKT_ID")
     var traktId: Int = -1
@@ -133,7 +133,7 @@ class PopularShow(){
 }
 
 @Entity(tableName = "SEASONS", indices = [Index("SHOW_ID")])
-class Season(){
+class Season() {
     @PrimaryKey
     @ColumnInfo(name = "CONCAT_ID")
     var id: String = ""
@@ -146,7 +146,7 @@ class Season(){
 }
 
 @Entity(tableName = "EPISODES", indices = [Index("SEASON", "SHOW_ID")])
-class Episode(){
+class Episode() {
     @PrimaryKey
     @ColumnInfo(name = "CONCAT_ID")
     var id: String = ""
@@ -163,7 +163,7 @@ class Episode(){
 }
 
 @Entity(tableName = "EPISODES_DETAILS", indices = [Index("SHOW_ID")])
-class DetailedEpisode(){
+class DetailedEpisode() {
     @PrimaryKey
     @ColumnInfo(name = "CONCAT_ID")
     var id: String = ""

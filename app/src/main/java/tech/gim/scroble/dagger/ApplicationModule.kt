@@ -22,34 +22,40 @@ import javax.inject.Singleton
 
 @Module
 class ApplicationModule(val app: ScrobleApplication) {
-    @Provides @Singleton fun provideApp() = app;
+    @Provides @Singleton fun provideApp() = app
     @Provides @Singleton fun provideTraktApi() = Retrofit.Builder()
         .baseUrl(BuildConfig.TRAKT_API_URL)
         .addConverterFactory(JacksonConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .client(OkHttpClient.Builder()
-            .addInterceptor(Interceptor { chain ->
-                val original = chain.request()
-                val request = original.newBuilder()
-                    .header("Content-Type", "application/json")
-                    .header("trakt-api-version", "2")
-                    .header("trakt-api-key", BuildConfig.TRAKT_CLIENT_ID)
-                    .method(original.method(), original.body())
-                    .build()
-                return@Interceptor chain.proceed(request)
-            })
-            .build())
+        .client(
+            OkHttpClient.Builder()
+                .addInterceptor(
+                    Interceptor { chain ->
+                        val original = chain.request()
+                        val request = original.newBuilder()
+                            .header("Content-Type", "application/json")
+                            .header("trakt-api-version", "2")
+                            .header("trakt-api-key", BuildConfig.TRAKT_CLIENT_ID)
+                            .method(original.method(), original.body())
+                            .build()
+                        return@Interceptor chain.proceed(request)
+                    }
+                )
+                .build()
+        )
         .build()
         .create(TraktApi::class.java)
     @Provides @Singleton fun provideFanartApi() = Retrofit.Builder()
         .baseUrl(BuildConfig.FANART_API_URL)
         .addConverterFactory(JacksonConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .client(OkHttpClient.Builder()
-            .build())
+        .client(
+            OkHttpClient.Builder()
+                .build()
+        )
         .build()
         .create(FanartApi::class.java)
-    @Provides @Singleton fun provideRoomsDatabase(app: ScrobleApplication) = Room.databaseBuilder(app,RoomsDatabase::class.java,"trakt_client_database")
+    @Provides @Singleton fun provideRoomsDatabase(app: ScrobleApplication) = Room.databaseBuilder(app, RoomsDatabase::class.java, "trakt_client_database")
         .fallbackToDestructiveMigration()
         .build()
     @Provides fun provideShowDatabaseDAO(roomsDatabase: RoomsDatabase) = roomsDatabase.showDatabaseDAO()

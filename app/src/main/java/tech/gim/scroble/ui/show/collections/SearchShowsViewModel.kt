@@ -3,7 +3,6 @@ package tech.gim.scroble.ui.show.collections
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
 import tech.gim.scroble.ScrobleApplication
 import tech.gim.scroble.model.MinimizedShow
 import tech.gim.scroble.model.MinimizedShowWithImages
@@ -29,8 +28,8 @@ class SearchShowsViewModel(private val context: ScrobleApplication) : AndroidVie
     fun setSearch(s: String) {
         query = s
         shows = Transformations.map(showService.getShows(s)) { it.map { it.show } }
-        showsWithImages = Transformations.switchMap(shows)  {
-            Transformations.map(imageService.getImagesForIds(it.map { it?.ids })){ img -> HelperFunctions.combineShowsAndImages(it, img) }
+        showsWithImages = Transformations.switchMap(shows) {
+            Transformations.map(imageService.getImagesForIds(it.map { it?.ids })) { img -> HelperFunctions.combineShowsAndImages(it, img) }
         }
     }
 }

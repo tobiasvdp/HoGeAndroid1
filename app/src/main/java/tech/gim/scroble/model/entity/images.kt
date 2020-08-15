@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import tech.gim.scroble.model.ShowImages
 
 @Entity(tableName = "IMAGES")
-class ShowImages(){
+class ShowImages() {
     @PrimaryKey
     @ColumnInfo(name = "TRAKT_ID")
     var traktId: Int = -1

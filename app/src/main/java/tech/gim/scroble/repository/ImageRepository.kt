@@ -29,14 +29,14 @@ class ImageRepository(app: ScrobleApplication) {
     fun getImagesForShowId(ids: ReferenceData?): LiveData<ShowImages?> {
         val showImage = dao.getImagesByTraktId(ids?.trakt!!)
         return Transformations.map(showImage) {
-            if(it == null) return@map null
+            if (it == null) return@map null
             return@map Mappers.mapToDomain(it)
         }
     }
 
     fun getImagesForShowIdSync(ids: ReferenceData?): ShowImages? {
         val showImage = dao.getImagesByTraktIdSync(ids?.trakt!!)
-        if(showImage == null) return null
+        if (showImage == null) return null
         return Mappers.mapToDomain(showImage)
     }
 
@@ -50,8 +50,8 @@ class ImageRepository(app: ScrobleApplication) {
         return showImages.map { Mappers.mapToDomain(it) }
     }
 
-    suspend fun fetchImages(ids: ReferenceData?){
-        if(ids?.trakt == null) return
+    suspend fun fetchImages(ids: ReferenceData?) {
+        if (ids?.trakt == null) return
         Timber.i("Fetching images for %s", ids.trakt)
 
         withContext(Dispatchers.IO) {
@@ -65,7 +65,5 @@ class ImageRepository(app: ScrobleApplication) {
                 Timber.e("Failed to proccess images %s", ex.localizedMessage)
             }
         }
-
     }
-
 }

@@ -27,7 +27,7 @@ class ImageService(app: ScrobleApplication) {
         val img = imageRepository.getImagesForShowId(ref)
         coroutineScope.launch {
             val i = imageRepository.getImagesForShowIdSync(ref)
-            if(i == null){
+            if (i == null) {
                 imageRepository.fetchImages(ref)
             }
         }
@@ -45,6 +45,6 @@ class ImageService(app: ScrobleApplication) {
     }
 
     fun getImagesForIdsSync(ref: List<ReferenceData?>): List<ShowImages> {
-            return imageRepository.getImagesForShowIdsSync(ref)
+        return imageRepository.getImagesForShowIdsSync(ref)
     }
 }

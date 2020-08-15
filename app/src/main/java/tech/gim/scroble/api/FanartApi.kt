@@ -8,5 +8,5 @@ import tech.gim.scroble.model.dto.FanartImages
 
 interface FanartApi {
     @GET("tv/{tvdbId}?api_key=" + BuildConfig.FANART_API_KEY)
-    fun getImagesForTvdbId(@Path("tvdbId") tvdbId: String) : Deferred<FanartImages>
+    fun getImagesForTvdbId(@Path("tvdbId") tvdbId: String): Deferred<FanartImages>
 }

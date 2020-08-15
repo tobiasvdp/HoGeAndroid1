@@ -17,8 +17,8 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(ApplicationModule::class))
 @Singleton
 interface ApplicationComponent {
-    fun inject(app: ScrobleApplication);
-    fun inject(showService: ShowService);
+    fun inject(app: ScrobleApplication)
+    fun inject(showService: ShowService)
     fun inject(showRepository: ShowRepository)
     fun inject(imageRepository: ImageRepository)
     fun inject(imageService: ImageService)

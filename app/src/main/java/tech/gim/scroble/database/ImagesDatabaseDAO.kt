@@ -23,5 +23,4 @@ interface ImagesDatabaseDAO {
 
     @Query("SELECT * FROM IMAGES WHERE TRAKT_ID IN (:ids)")
     fun getImagesByTraktIdsSync(ids: List<Int>): List<ShowImages>
-
 }

@@ -13,10 +13,10 @@ import kotlin.collections.HashMap
 class Mappers {
     companion object {
         private fun validateNumberNotNull(num: Int?): Int {
-            if(num == null)
+            if (num == null)
                 throw RuntimeException("Id cannot be null")
             else
-                return num;
+                return num
         }
 
         fun mapToDomain(trendingShow: tech.gim.scroble.model.entity.TrendingShow) = TrendingShow(
@@ -204,16 +204,15 @@ class Mappers {
             var maxVotes = HashMap<String, Int>()
             val highestRatingImage = HashMap<Int, FanartImage>()
             list.iterator().forEach {
-                try{
-                    if(it.season != null){
+                try {
+                    if (it.season != null) {
                         val maxVote = maxVotes.getOrPut(it.season!!, { -1 })
-                        if(maxVote < it.likes.toInt()){
+                        if (maxVote < it.likes.toInt()) {
                             maxVotes[it.season!!] = it.likes.toInt()
                             highestRatingImage[it.season!!.toInt()] = it
                         }
                     }
-                }catch (ex: Exception){
-
+                } catch (ex: Exception) {
                 }
             }
             return highestRatingImage.mapValues {
@@ -226,13 +225,13 @@ class Mappers {
             var maxVotes: Int = -1
             var highestRatingImage = list[0]
             list.iterator().forEach {
-                try{
-                    if(maxVotes < it.likes.toInt()){
+                try {
+                    if (maxVotes < it.likes.toInt()) {
                         maxVotes = it.likes.toInt()
                         highestRatingImage = it
                     }
-                }catch (ex: Exception){
-                    if(maxVotes == -1){
+                } catch (ex: Exception) {
+                    if (maxVotes == -1) {
                         maxVotes = 0
                         highestRatingImage = it
                     }
@@ -246,11 +245,10 @@ class Mappers {
             e.traktId = images.traktId
             e.data = images
             return e
-
         }
 
         fun mapToDomain(it: tech.gim.scroble.model.entity.DetailedShow?): DetailedShow? {
-            if(it == null) return null
+            if (it == null) return null
             return DetailedShow(
                 it.title,
                 it.year,
@@ -372,7 +370,7 @@ class Mappers {
             episode.runtime
         )
         fun mapToDomain(episode: tech.gim.scroble.model.entity.DetailedEpisode?): DetailedEpisode? {
-            if(episode == null)
+            if (episode == null)
                 return null
             else
                 return DetailedEpisode(
@@ -431,9 +429,8 @@ class Mappers {
             )
         )
 
-
-            fun mapToEntity(show: SearchedShow): tech.gim.scroble.model.entity.SearchedShow {
-            val s =  tech.gim.scroble.model.entity.SearchedShow()
+        fun mapToEntity(show: SearchedShow): tech.gim.scroble.model.entity.SearchedShow {
+            val s = tech.gim.scroble.model.entity.SearchedShow()
             s.traktId = show.traktId
             s.score = show.score
             s.serie = tech.gim.scroble.model.entity.MinimizedShow(
@@ -443,6 +440,5 @@ class Mappers {
             )
             return s
         }
-
     }
 }

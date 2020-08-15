@@ -8,7 +8,6 @@ import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.readValue
 import tech.gim.scroble.model.ShowImages
 import java.time.LocalDateTime
-import java.time.ZoneOffset
 import java.time.ZoneOffset.UTC
 
 class TypeConvertors {
@@ -33,7 +32,7 @@ class TypeConvertors {
     @TypeConverter
     fun showImagesFromEntityData(value: String): ShowImages = objectMapper.readValue<ShowImages>(value)
 
-    companion object{
+    companion object {
         var objectMapper = ObjectMapper().registerModule(KotlinModule())
     }
 }

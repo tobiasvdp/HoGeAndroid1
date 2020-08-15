@@ -17,11 +17,10 @@ class PreferenceService(var app: ScrobleApplication) {
         )
     }
 
-    fun commitPreferenceChanges(){
+    fun commitPreferenceChanges() {
         val editor = storedPreferences.edit()
         editor.putString("pageSize", preferences.pageSize)
         editor.putString("timePeriod", preferences.timePeriod)
         editor.apply()
     }
-
 }

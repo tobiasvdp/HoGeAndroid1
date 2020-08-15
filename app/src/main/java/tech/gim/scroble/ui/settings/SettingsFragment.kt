@@ -1,22 +1,15 @@
 package tech.gim.scroble.ui.settings
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import tech.gim.scroble.R
 import tech.gim.scroble.ScrobleApplication
-import tech.gim.scroble.databinding.AnticipatedShowsFragmentBinding
 import tech.gim.scroble.databinding.SettingsFragmentBinding
-import tech.gim.scroble.ui.show.ShowsRecyclerViewAdapter
-import tech.gim.scroble.ui.show.collections.AnticipatedShowsFragmentDirections
-import tech.gim.scroble.ui.show.collections.AnticipatedShowsViewModel
-import tech.gim.scroble.utils.HelperFunctions
 import tech.gim.scroble.utils.ScrobleModelFactory
 
 class SettingsFragment : Fragment() {
@@ -28,14 +21,16 @@ class SettingsFragment : Fragment() {
     private lateinit var viewModel: SettingsViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProviders.of(this, ScrobleModelFactory(context?.applicationContext as ScrobleApplication)).get(
-            SettingsViewModel::class.java)
+            SettingsViewModel::class.java
+        )
         val binding: SettingsFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.settings_fragment, container, false)
         binding.viewModel = viewModel
-        binding.settingsPeriodField.setSelection(getIndexOfSelected(viewModel.preferences.timePeriod) , false)
+        binding.settingsPeriodField.setSelection(getIndexOfSelected(viewModel.preferences.timePeriod), false)
         binding.settingsPeriodField.onItemSelectedListener = viewModel.onPeriodSelection
         binding.setLifecycleOwner(this)
         return binding.root
@@ -43,7 +38,7 @@ class SettingsFragment : Fragment() {
 
     private fun getIndexOfSelected(timePeriod: String): Int {
         val arr = context?.resources?.getStringArray(R.array.settings_period_array)
-        if(arr != null){
+        if (arr != null) {
             return arr.indexOf(timePeriod)
         }
         return 0

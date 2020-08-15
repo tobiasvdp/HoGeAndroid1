@@ -5,17 +5,17 @@ import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.SearchView.OnQueryTextListener
-import androidx.appcompat.widget.Toolbar
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,14 +32,17 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.nav_home,
-            R.id.nav_shows_popular,
-            R.id.nav_shows_trending,
-            R.id.nav_shows_most_recommended,
-            R.id.nav_shows_most_viewed,
-            R.id.nav_shows_anticipated
-        ), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.nav_home,
+                R.id.nav_shows_popular,
+                R.id.nav_shows_trending,
+                R.id.nav_shows_most_recommended,
+                R.id.nav_shows_most_viewed,
+                R.id.nav_shows_anticipated
+            ),
+            drawerLayout
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
@@ -62,7 +65,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.action_settings){
+        if (item.itemId == R.id.action_settings) {
             val navController = findNavController(R.id.nav_host_fragment)
             navController.navigate(R.id.nav_settings)
             return true
@@ -75,10 +78,10 @@ class OnSearchListener(
     val mainActivity: MainActivity,
     val searchView: SearchView,
     val searchItem: MenuItem
-) : OnQueryTextListener{
+) : OnQueryTextListener {
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if( ! searchView.isIconified) {
+        if (! searchView.isIconified) {
             searchView.isIconified = true
         }
         searchItem.collapseActionView()

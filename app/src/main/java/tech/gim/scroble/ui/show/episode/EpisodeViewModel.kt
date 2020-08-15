@@ -3,7 +3,6 @@ package tech.gim.scroble.ui.show.episode
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
 import tech.gim.scroble.ScrobleApplication
 import tech.gim.scroble.model.*
 import tech.gim.scroble.service.ImageService
@@ -32,12 +31,12 @@ class EpisodeViewModel(private val context: ScrobleApplication) : AndroidViewMod
         season = se
         episode = ep
 
-        if(minimizedShow != null && season != null && episode != null){
+        if (minimizedShow != null && season != null && episode != null) {
             detailedEpisode = showService.getEpisodeDetail(minimizedShow!!.ids!!.trakt!!, episode!!.season, episode!!.number)
             images = imageService.getImagesForId(minimizedShow!!.ids)
             posterSrc = Transformations.map(images!!) {
                 var src = it?.seasonBanners?.get(episode!!.season)?.src
-                if(src == null){
+                if (src == null) {
                     src = it?.banner?.src
                 }
                 return@map src

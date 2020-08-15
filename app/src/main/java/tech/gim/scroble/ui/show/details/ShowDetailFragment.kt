@@ -7,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import tech.gim.scroble.R
 import tech.gim.scroble.ScrobleApplication
-import tech.gim.scroble.databinding.MinimizedShowCardBinding
 import tech.gim.scroble.databinding.SeasonCardBinding
 import tech.gim.scroble.databinding.ShowDetailFragmentBinding
 import tech.gim.scroble.model.MinimizedShow
@@ -35,12 +33,13 @@ class ShowDetailFragment : Fragment() {
     private lateinit var viewModel: ShowDetailViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProviders.of(this, ScrobleModelFactory(context?.applicationContext as ScrobleApplication)).get(ShowDetailViewModel::class.java)
 
-        if(arguments != null) {
+        if (arguments != null) {
             val args = ShowDetailFragmentArgs.fromBundle(arguments!!)
             viewModel.setShow(args.minimizedShow)
         }
@@ -75,8 +74,8 @@ class ShowDetailFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.action_show_details_share){
-            if(viewModel.minimizedShow?.title != null) {
+        if (item.itemId == R.id.action_show_details_share) {
+            if (viewModel.minimizedShow?.title != null) {
                 val intent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(Intent.EXTRA_TEXT, context?.resources?.getString(R.string.share_show_detail)?.replace("{show}", viewModel.minimizedShow!!.title!!, false))
@@ -90,7 +89,7 @@ class ShowDetailFragment : Fragment() {
     }
 }
 
-class SeasonRecyclerViewAdapter(private var show: MinimizedShow, private var images: LiveData<ShowImages?>, private var seasons: LiveData<List<Season>>): ListAdapter<SeasonWithImages?, SeasonsViewHolder>(SeasonDiffUtil()){
+class SeasonRecyclerViewAdapter(private var show: MinimizedShow, private var images: LiveData<ShowImages?>, private var seasons: LiveData<List<Season>>) : ListAdapter<SeasonWithImages?, SeasonsViewHolder>(SeasonDiffUtil()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeasonsViewHolder {
         return SeasonsViewHolder.from(parent, show)
     }
@@ -102,9 +101,9 @@ class SeasonRecyclerViewAdapter(private var show: MinimizedShow, private var ima
     }
 
     fun dataChanged(newData: List<Season?>?) {
-        if(newData == null){
+        if (newData == null) {
             submitList(ArrayList())
-        }else{
+        } else {
             Timber.i("Changed dataset seasons")
             val images = images.value
             submitList(newData.map { SeasonWithImages(it, images) })
@@ -112,31 +111,31 @@ class SeasonRecyclerViewAdapter(private var show: MinimizedShow, private var ima
     }
 
     fun dataChanged(images: ShowImages?) {
-            Timber.i("Changed dataset img")
-            submitList(seasons.value?.map { SeasonWithImages(it, images) })
+        Timber.i("Changed dataset img")
+        submitList(seasons.value?.map { SeasonWithImages(it, images) })
     }
-
-
 }
 
-class SeasonsViewHolder(val binding: SeasonCardBinding): RecyclerView.ViewHolder(binding.root) {
+class SeasonsViewHolder(val binding: SeasonCardBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    companion object{
+    companion object {
         fun from(parent: ViewGroup, show: MinimizedShow): SeasonsViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
             val binding = SeasonCardBinding.inflate(layoutInflater, parent, false)
-            binding.seasonCard.setOnClickListener(View.OnClickListener {
-                val dir = ShowDetailFragmentDirections.actionNavShowDetailsToNavShowSeason()
-                dir.minimizedShow = show
-                dir.season = binding.season
-                it.findNavController().navigate(dir)
-            })
+            binding.seasonCard.setOnClickListener(
+                View.OnClickListener {
+                    val dir = ShowDetailFragmentDirections.actionNavShowDetailsToNavShowSeason()
+                    dir.minimizedShow = show
+                    dir.season = binding.season
+                    it.findNavController().navigate(dir)
+                }
+            )
             return SeasonsViewHolder(binding)
         }
     }
 }
 
-class SeasonDiffUtil(): DiffUtil.ItemCallback<SeasonWithImages?>(){
+class SeasonDiffUtil() : DiffUtil.ItemCallback<SeasonWithImages?>() {
     override fun areItemsTheSame(oldItem: SeasonWithImages, newItem: SeasonWithImages): Boolean {
         return newItem.season?.ids != null && oldItem.season?.ids?.trakt == newItem.season?.ids?.trakt
     }
@@ -144,5 +143,4 @@ class SeasonDiffUtil(): DiffUtil.ItemCallback<SeasonWithImages?>(){
     override fun areContentsTheSame(oldItem: SeasonWithImages, newItem: SeasonWithImages): Boolean {
         return oldItem.hashCode() == newItem.hashCode()
     }
-
 }

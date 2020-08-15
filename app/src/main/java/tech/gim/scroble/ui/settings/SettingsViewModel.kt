@@ -21,7 +21,7 @@ class SettingsViewModel(private val context: ScrobleApplication) : AndroidViewMo
         preferences = preferenceService.preferences
     }
 
-    fun confirmChanges(){
+    fun confirmChanges() {
         preferenceService.commitPreferenceChanges()
     }
 }
