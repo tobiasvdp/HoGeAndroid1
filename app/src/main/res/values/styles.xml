@@ -1,0 +1,86 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorPrimaryVariant">@color/primaryLightColor</item>
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
+        <item name="colorOnSecondary">@color/secondaryTextColor</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Text.Highlighted" parent="android:Theme">
+        <item name="android:background">@color/primaryDarkColor</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:paddingBottom">@dimen/margin_small</item>
+        <item name="android:paddingTop">@dimen/margin_small</item>
+        <item name="android:paddingStart">@dimen/margin_small</item>
+        <item name="android:paddingEnd">@dimen/margin_small</item>
+    </style>
+
+    <style name="Item.Card" parent="android:Theme">
+        <item name="android:background">@color/primaryColor</item>
+        <item name="android:layout_height">@dimen/card_height</item>
+        <item name="android:layout_width">@dimen/card_width</item>
+        <item name="android:layout_margin">@dimen/margin_xsmall</item>
+    </style>
+    <style name="Item.Card.Image" parent="android:Theme">
+        <item name="android:background">@color/secondaryLightColor</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+    <style name="Item.HorizontalCard" parent="android:Theme">
+        <item name="android:layout_height">@dimen/horizontalCard_height</item>
+    </style>
+    <style name="Item.HorizontalCard.Image" parent="android:Theme">
+        <item name="android:background">@color/secondaryLightColor</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:layout_width">@dimen/horizontalCard_image_width</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="Episode.Image" parent="android:Theme">
+        <item name="android:background">@color/secondaryLightColor</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/episode_image_height</item>
+    </style>
+    <style name="Show.Banner" parent="android:Theme">
+        <item name="android:background">@color/secondaryLightColor</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:layout_height">@dimen/show_banner_height</item>
+    </style>
+    <style name="Show.Title" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textColor">@color/primaryColor</item>
+    </style>
+    <style name="Show.Subtitle" parent="TextAppearance.MaterialComponents.Headline6">
+    </style>
+    <style name="Show.Label" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/primaryColor</item>
+    </style>
+    <style name="Show.Sublabel" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="Show.InlineLabel" parent="android:Theme">
+        <item name="android:layout_marginStart">@dimen/margin_normal</item>
+    </style>
+
+    <style name="Item.Card.Title" parent="android:Theme">
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:layout_margin">@dimen/margin_xsmall</item>
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
+
+</resources>

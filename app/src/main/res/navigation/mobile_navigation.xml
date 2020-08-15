@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_shows_anticipated"
+        android:name="tech.gim.scroble.ui.show.collections.AnticipatedShowsFragment"
+        android:label="@string/menu_shows_anticipated"
+        tools:layout="@layout/anticipated_shows_fragment" >
+        <action
+            android:id="@+id/action_nav_shows_anticipated_to_nav_show_details"
+            app:destination="@id/nav_show_details"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_shows_most_recommended"
+        android:name="tech.gim.scroble.ui.show.collections.MostRecomendedShowsFragment"
+        android:label="@string/menu_shows_most_recommended"
+        tools:layout="@layout/most_recomended_shows_fragment" >
+        <action
+            android:id="@+id/action_nav_shows_most_recommended_to_nav_show_details"
+            app:destination="@id/nav_show_details"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_shows_most_viewed"
+        android:name="tech.gim.scroble.ui.show.collections.MostViewedShowsFragment"
+        android:label="@string/menu_shows_most_viewed"
+        tools:layout="@layout/most_viewed_shows_fragment" >
+        <action
+            android:id="@+id/action_nav_shows_most_viewed_to_nav_show_details"
+            app:destination="@id/nav_show_details"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_shows_popular"
+        android:name="tech.gim.scroble.ui.show.collections.PopularShowsFragment"
+        android:label="@string/menu_shows_popular"
+        tools:layout="@layout/popular_shows_fragment" >
+        <action
+            android:id="@+id/action_nav_shows_popular_to_nav_show_details"
+            app:destination="@id/nav_show_details"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_shows_trending"
+        android:name="tech.gim.scroble.ui.show.collections.TrendingShowsFragment"
+        android:label="@string/menu_shows_trending"
+        tools:layout="@layout/trending_shows_fragment" >
+        <action
+            android:id="@+id/action_nav_shows_trending_to_nav_show_details"
+            app:destination="@id/nav_show_details"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="tech.gim.scroble.ui.home.HomeFragment"
+        android:label="@string/menu_shows"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="tech.gim.scroble.ui.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/settings_fragment" />
+
+    <fragment
+        android:id="@+id/nav_search_shows"
+        android:name="tech.gim.scroble.ui.show.collections.SearchShowsFragment"
+        android:label="@string/menu_search_show"
+        tools:layout="@layout/search_shows_fragment" >
+        <action
+            android:id="@+id/action_nav_search_shows_to_nav_show_details"
+            app:destination="@id/nav_show_details"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_show_details"
+        android:name="tech.gim.scroble.ui.show.details.ShowDetailFragment"
+        android:label="@string/menu_show_details"
+        tools:layout="@layout/show_detail_fragment" >
+        <argument
+            android:name="minimizedShow"
+            app:argType="tech.gim.scroble.model.MinimizedShow"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_nav_show_details_to_nav_show_season"
+            app:destination="@id/nav_show_season"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_show_season"
+        android:name="tech.gim.scroble.ui.show.season.SeasonFragment"
+        android:label="@string/menu_show_season"
+        tools:layout="@layout/season_fragment" >
+        <argument
+            android:name="minimizedShow"
+            app:argType="tech.gim.scroble.model.MinimizedShow"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="season"
+            app:argType="tech.gim.scroble.model.Season"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_nav_show_season_to_nav_show_episode"
+            app:destination="@id/nav_show_episode"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_show_episode"
+        android:name="tech.gim.scroble.ui.show.episode.EpisodeFragment"
+        android:label="@string/menu_show_episode"
+        tools:layout="@layout/episode_fragment" >
+        <argument
+            android:name="minimizedShow"
+            app:argType="tech.gim.scroble.model.MinimizedShow"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="season"
+            app:argType="tech.gim.scroble.model.Season"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="episode"
+            app:argType="tech.gim.scroble.model.Episode"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+
+</navigation>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="episode"
+            type="tech.gim.scroble.model.Episode" />
+        <variable
+            name="poster"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/episode_card"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/margin_normal"
+        style="@style/Item.HorizontalCard">
+
+        <ImageView
+            android:id="@+id/image"
+            style="@style/Item.HorizontalCard.Image"
+            app:imageUrl="@{poster}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <TextView
+            android:id="@+id/episode_numbering"
+            android:layout_width="0dp"
+            style="@style/Show.Label"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_height="wrap_content"
+            app:episode_numbering="@{episode}"
+            tools:text="1x12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toTopOf="@+id/image" />
+
+        <TextView
+            android:id="@+id/episode_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{episode.title}"
+            tools:text="Tommy with endless patience"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/episode_numbering"
+            app:layout_constraintTop_toBottomOf="@+id/episode_numbering" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

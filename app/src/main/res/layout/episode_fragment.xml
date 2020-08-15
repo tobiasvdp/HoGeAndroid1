@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="tech.gim.scroble.ui.show.episode.EpisodeViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/episode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image"
+                style="@style/Episode.Image"
+                app:imageUrl="@{viewModel.posterSrc}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+            <TextView
+                android:id="@+id/episode_numbering"
+                android:layout_width="0dp"
+                style="@style/Show.Title"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_height="wrap_content"
+                app:episode_numbering="@{viewModel.episode}"
+                tools:text="1x12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/image"
+                app:layout_constraintTop_toBottomOf="@+id/image" />
+
+            <TextView
+                android:id="@+id/episode_name"
+                style="@style/Show.Subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.episode.title}"
+                tools:text="Tommy with endless patience"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/episode_numbering"
+                app:layout_constraintTop_toBottomOf="@+id/episode_numbering" />
+
+
+
+            <TextView
+                android:id="@+id/overview_label"
+                style="@style/Show.Label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/show_details_overview_label"
+                android:layout_marginTop="@dimen/margin_large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/episode_name" />
+
+            <TextView
+                android:id="@+id/overview_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.detailedEpisode.overview}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/overview_label"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie aliquam lacus ut auctor. Suspendisse nec gravida leo. Suspendisse facilisis porta porttitor. In accumsan rhoncus eros ac pulvinar. Praesent sodales sem sed mattis consectetur. Aenean maximus pellentesque neque et fermentum. Etiam maximus blandit venenatis. Nulla nec congue tellus. Etiam aliquam eget neque eget commodo. Morbi molestie risus id consequat sollicitudin. Vivamus fringilla luctus sagittis. Nulla quis leo nisl. Fusce a pretium neque, nec vehicula massa. Morbi auctor, tortor sit amet sodales sagittis, sapien ligula commodo nulla, sit amet egestas eros lectus sed urna." />
+
+            <TextView
+                android:id="@+id/aired_label"
+                style="@style/Show.Sublabel"
+                android:layout_marginTop="@dimen/margin_large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_details_aired_label"
+                app:layout_constraintTop_toBottomOf="@id/overview_text"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/aired_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:local_date_time="@{viewModel.detailedEpisode.firstAired}"
+                app:layout_constraintTop_toTopOf="@id/aired_label"
+                app:layout_constraintBottom_toBottomOf="@id/aired_label"
+                app:layout_constraintStart_toEndOf="@id/aired_label"
+                style="@style/Show.InlineLabel"
+                tools:text="May 21, 2020 1:00 AM"/>
+
+            <TextView
+                android:id="@+id/votes_label"
+                style="@style/Show.Sublabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_details_votes_label"
+                app:layout_constraintTop_toBottomOf="@id/aired_text"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/votes_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bindInt="@{viewModel.detailedEpisode.votes}"
+                app:layout_constraintTop_toTopOf="@id/votes_label"
+                app:layout_constraintBottom_toBottomOf="@id/votes_label"
+                app:layout_constraintStart_toEndOf="@id/votes_label"
+                style="@style/Show.InlineLabel"
+                tools:text="157"/>
+
+            <TextView
+                android:id="@+id/rating_label"
+                style="@style/Show.Sublabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_details_rating_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/votes_text"
+                app:layout_constraintTop_toTopOf="@id/votes_label" />
+
+            <TextView
+                android:id="@+id/rating_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:percentage="@{viewModel.detailedEpisode.rating}"
+                app:layout_constraintTop_toTopOf="@id/rating_label"
+                app:layout_constraintBottom_toBottomOf="@id/rating_label"
+                app:layout_constraintStart_toEndOf="@id/rating_label"
+                style="@style/Show.InlineLabel"
+                tools:text="87%"/>
+
+            <TextView
+                android:id="@+id/runtime_label"
+                style="@style/Show.Sublabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_details_runtime_label"
+                app:layout_constraintTop_toBottomOf="@id/votes_label"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/runtime_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:show_runtime="@{viewModel.detailedEpisode.runtime}"
+                app:layout_constraintTop_toTopOf="@id/runtime_label"
+                app:layout_constraintBottom_toBottomOf="@id/runtime_label"
+                app:layout_constraintStart_toEndOf="@id/runtime_label"
+                style="@style/Show.InlineLabel"
+                tools:text="22 minutes"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

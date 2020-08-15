@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="tech.gim.scroble.ui.show.details.ShowDetailViewModel" />
+    </data>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/nested_scroll_view"
+            tools:context=".ui.show.details.ShowDetailFragment">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:layout_conversion_absoluteHeight="0dp"
+                tools:layout_conversion_absoluteWidth="411dp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="195dp">
+
+                <ImageView
+                    android:id="@+id/banner"
+                    style="@style/Show.Banner"
+                    android:layout_width="0dp"
+                    android:contentDescription="@string/show_details_banner"
+                    app:imageUrl="@{viewModel.images.banner.src}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.minimizedShow.title}"
+                    app:layout_constraintEnd_toStartOf="@id/year"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/banner"
+                    style="@style/Show.Title"
+                    tools:text="Show name" />
+
+                <TextView
+                    android:id="@+id/year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:bindInt="@{viewModel.minimizedShow.year}"
+                    android:theme="@style/Text.Highlighted"
+                    app:layout_constraintBottom_toBottomOf="@id/title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/title"
+                    app:layout_constraintTop_toTopOf="@+id/title"
+                    tools:text="1992" />
+
+                <TextView
+                    android:id="@+id/overview_label"
+                    style="@style/Show.Label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_details_overview_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title" />
+
+                <TextView
+                    android:id="@+id/overview_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.detailedShow.overview}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/overview_label"
+                    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie aliquam lacus ut auctor. Suspendisse nec gravida leo. Suspendisse facilisis porta porttitor. In accumsan rhoncus eros ac pulvinar. Praesent sodales sem sed mattis consectetur. Aenean maximus pellentesque neque et fermentum. Etiam maximus blandit venenatis. Nulla nec congue tellus. Etiam aliquam eget neque eget commodo. Morbi molestie risus id consequat sollicitudin. Vivamus fringilla luctus sagittis. Nulla quis leo nisl. Fusce a pretium neque, nec vehicula massa. Morbi auctor, tortor sit amet sodales sagittis, sapien ligula commodo nulla, sit amet egestas eros lectus sed urna." />
+
+                <TextView
+                    android:id="@+id/status_label"
+                    style="@style/Show.Sublabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_details_status_label"
+                    app:layout_constraintTop_toBottomOf="@id/overview_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="@dimen/margin_large"/>
+
+                <TextView
+                    android:id="@+id/status_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.detailedShow.status}"
+                    app:layout_constraintTop_toTopOf="@id/status_label"
+                    app:layout_constraintBottom_toBottomOf="@id/status_label"
+                    app:layout_constraintStart_toEndOf="@id/status_label"
+                    style="@style/Show.InlineLabel"
+                    tools:text="Returning series"/>
+
+                <TextView
+                    android:id="@+id/airs_label"
+                    style="@style/Show.Sublabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_details_airs_label"
+                    app:layout_constraintTop_toBottomOf="@id/status_text"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/airs_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:show_airtime="@{viewModel.detailedShow}"
+                    app:layout_constraintTop_toTopOf="@id/airs_label"
+                    app:layout_constraintBottom_toBottomOf="@id/airs_label"
+                    app:layout_constraintStart_toEndOf="@id/airs_label"
+                    style="@style/Show.InlineLabel"
+                    tools:text="Mondays at 8:00 on ABC"/>
+
+                <TextView
+                    android:id="@+id/country_label"
+                    style="@style/Show.Sublabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_details_country_label"
+                    app:layout_constraintTop_toBottomOf="@id/airs_text"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/country_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.detailedShow.country}"
+                    app:layout_constraintTop_toTopOf="@id/country_label"
+                    app:layout_constraintBottom_toBottomOf="@id/country_label"
+                    app:layout_constraintStart_toEndOf="@id/country_label"
+                    style="@style/Show.InlineLabel"
+                    tools:text="Belgium"/>
+
+                <TextView
+                    android:id="@+id/language_label"
+                    style="@style/Show.Sublabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_details_language_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/country_text"
+                    app:layout_constraintTop_toTopOf="@id/country_label" />
+
+                <TextView
+                    android:id="@+id/language_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.detailedShow.language}"
+                    app:layout_constraintTop_toTopOf="@id/language_label"
+                    app:layout_constraintBottom_toBottomOf="@id/language_label"
+                    app:layout_constraintStart_toEndOf="@id/language_label"
+                    style="@style/Show.InlineLabel"
+                    tools:text="English"/>
+
+                <TextView
+                    android:id="@+id/genres_label"
+                    style="@style/Show.Sublabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_details_genres_label"
+                    app:layout_constraintTop_toBottomOf="@id/language_text"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/genres_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:show_genres="@{viewModel.detailedShow.genres}"
+                    app:layout_constraintTop_toTopOf="@id/genres_label"
+                    app:layout_constraintBottom_toBottomOf="@id/genres_label"
+                    app:layout_constraintStart_toEndOf="@id/genres_label"
+                    style="@style/Show.InlineLabel"
+                    tools:text="Comedy, Drama"/>
+
+                <TextView
+                    android:id="@+id/runtime_label"
+                    style="@style/Show.Sublabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_details_runtime_label"
+                    app:layout_constraintTop_toBottomOf="@id/genres_text"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/runtime_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:show_runtime="@{viewModel.detailedShow.runtime}"
+                    app:layout_constraintTop_toTopOf="@id/runtime_label"
+                    app:layout_constraintBottom_toBottomOf="@id/runtime_label"
+                    app:layout_constraintStart_toEndOf="@id/runtime_label"
+                    style="@style/Show.InlineLabel"
+                    tools:text="22 minutes"/>
+
+                <TextView
+                    android:id="@+id/seasons_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_details_season_label"
+                    style="@style/Show.Label"
+                    android:layout_marginTop="@dimen/margin_large"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/runtime_label"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/seasons_list"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/seasons_label"
+                    tools:listitem="@layout/season_card"
+                    tools:itemCount="12"
+                    tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+</layout>

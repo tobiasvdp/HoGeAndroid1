@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="tech.gim.scroble.ui.settings.SettingsViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.settings.SettingsFragment"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/settings_pagesize_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Show.Label"
+            android:layout_marginTop="@dimen/margin_large"
+            android:text="@string/settings_pagesize" />
+        <TextView
+            android:id="@+id/settings_pagesize_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_pagesize_info" />
+
+        <EditText
+            android:id="@+id/settings_pagesize_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:text="@={viewModel.preferences.pageSize}"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_normal"/>
+
+        <TextView
+            android:id="@+id/settings_period_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Show.Label"
+            android:layout_marginTop="@dimen/margin_large"
+            android:text="@string/settings_period" />
+        <TextView
+            android:id="@+id/settings_period_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_period_info" />
+
+        <Spinner
+            android:id="@+id/settings_period_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_normal"
+            android:ems="10"
+            android:entries="@array/settings_period_array"
+            android:spinnerMode="dropdown"/>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_baseline_house_24"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_shows_popular"
+            android:icon="@drawable/ic_baseline_star_24"
+            android:title="@string/menu_shows_popular" />
+        <item
+            android:id="@+id/nav_shows_trending"
+            android:icon="@drawable/ic_baseline_trending_up_24"
+            android:title="@string/menu_shows_trending" />
+        <item
+            android:id="@+id/nav_shows_most_recommended"
+            android:icon="@drawable/ic_baseline_thumb_up_24"
+            android:title="@string/menu_shows_most_recommended" />
+        <item
+            android:id="@+id/nav_shows_most_viewed"
+            android:icon="@drawable/ic_baseline_remove_red_eye_24"
+            android:title="@string/menu_shows_most_viewed" />
+        <item
+            android:id="@+id/nav_shows_anticipated"
+            android:icon="@drawable/ic_baseline_schedule_24"
+            android:title="@string/menu_shows_anticipated" />
+    </group>
+</menu>
