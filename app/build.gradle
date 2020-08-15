@@ -28,6 +28,8 @@ android {
         release {
             buildConfigField 'String', 'TRAKT_API_URL', '"https://api.trakt.tv"'
             buildConfigField 'String', 'TRAKT_CLIENT_ID', '"56a248874a3c6b46a1a0fca08076e93190ce02a678e54be020fdf871fe8da733"'
+            buildConfigField 'String', 'FANART_API_URL', '"https://webservice.fanart.tv/v3/"'
+            buildConfigField 'String', 'FANART_API_KEY', '"1da8fcfab3321a1f0def0d84082af60b"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
