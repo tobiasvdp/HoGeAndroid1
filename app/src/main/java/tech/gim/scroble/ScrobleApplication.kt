@@ -13,12 +13,16 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class ScrobleApplication(val generateDagger: Boolean? = true) : Application() {
-    val component: ApplicationComponent by lazy {
-            return@lazy DaggerApplicationComponent.builder()
+    lateinit var component: ApplicationComponent
+    var cm: ConnectivityManager? = null
+
+    init {
+        if(generateDagger != null && generateDagger){
+            DaggerApplicationComponent.builder()
                 .applicationModule(ApplicationModule(this))
                 .build()
+        }
     }
-    var cm: ConnectivityManager? = null
 
     override fun onCreate() {
         super.onCreate()

@@ -53,7 +53,7 @@ class IntegrationTests {
     }
     @Test
     fun testQuery() {
-        showService.repository
+        assert(showService.repository.traktApi != null)
     }
 
 }
