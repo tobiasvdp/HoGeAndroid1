@@ -14,7 +14,7 @@ import tech.gim.scroble.ui.show.episode.EpisodeViewModel
 import tech.gim.scroble.ui.show.season.SeasonViewModel
 import javax.inject.Singleton
 
-@Component(modules = arrayOf(ApplicationModule::class))
+@Component(modules = [ApplicationModule::class])
 @Singleton
 interface ApplicationComponent {
     fun inject(app: ScrobleApplication)

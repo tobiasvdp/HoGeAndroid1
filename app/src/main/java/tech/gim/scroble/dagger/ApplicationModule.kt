@@ -21,9 +21,9 @@ import tech.gim.scroble.service.ShowService
 import javax.inject.Singleton
 
 @Module
-class ApplicationModule(val app: ScrobleApplication) {
+open class ApplicationModule(val app: ScrobleApplication) {
     @Provides @Singleton fun provideApp() = app
-    @Provides @Singleton fun provideTraktApi() = Retrofit.Builder()
+    @Provides @Singleton open fun provideTraktApi() = Retrofit.Builder()
         .baseUrl(BuildConfig.TRAKT_API_URL)
         .addConverterFactory(JacksonConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
@@ -45,7 +45,7 @@ class ApplicationModule(val app: ScrobleApplication) {
         )
         .build()
         .create(TraktApi::class.java)
-    @Provides @Singleton fun provideFanartApi() = Retrofit.Builder()
+    @Provides @Singleton open fun provideFanartApi() = Retrofit.Builder()
         .baseUrl(BuildConfig.FANART_API_URL)
         .addConverterFactory(JacksonConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
@@ -55,11 +55,11 @@ class ApplicationModule(val app: ScrobleApplication) {
         )
         .build()
         .create(FanartApi::class.java)
-    @Provides @Singleton fun provideRoomsDatabase(app: ScrobleApplication) = Room.databaseBuilder(app, RoomsDatabase::class.java, "trakt_client_database")
+    @Provides @Singleton open fun provideRoomsDatabase(app: ScrobleApplication): RoomsDatabase = Room.databaseBuilder(app, RoomsDatabase::class.java, "trakt_client_database")
         .fallbackToDestructiveMigration()
         .build()
-    @Provides fun provideShowDatabaseDAO(roomsDatabase: RoomsDatabase) = roomsDatabase.showDatabaseDAO()
-    @Provides fun provideImagesDatabaseDAO(roomsDatabase: RoomsDatabase) = roomsDatabase.imagesDatabaseDAO()
+    @Provides open fun provideShowDatabaseDAO(roomsDatabase: RoomsDatabase) = roomsDatabase.showDatabaseDAO()
+    @Provides open fun provideImagesDatabaseDAO(roomsDatabase: RoomsDatabase) = roomsDatabase.imagesDatabaseDAO()
     @Provides @Singleton fun provideTraktService(app: ScrobleApplication) = ShowService(app)
     @Provides @Singleton fun provideImageService(app: ScrobleApplication) = ImageService(app)
     @Provides @Singleton fun providePreferenceService(app: ScrobleApplication) = PreferenceService(app)

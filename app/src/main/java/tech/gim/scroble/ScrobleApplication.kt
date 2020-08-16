@@ -12,21 +12,20 @@ import tech.gim.scroble.service.ShowService
 import timber.log.Timber
 import javax.inject.Inject
 
-class ScrobleApplication : Application() {
+class ScrobleApplication(val generateDagger: Boolean? = true) : Application() {
     val component: ApplicationComponent by lazy {
-        DaggerApplicationComponent.builder()
-            .applicationModule(ApplicationModule(this))
-            .build()
+            return@lazy DaggerApplicationComponent.builder()
+                .applicationModule(ApplicationModule(this))
+                .build()
     }
     var cm: ConnectivityManager? = null
-
-    @Inject
-    lateinit var showService: ShowService
 
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-        component.inject(this)
+        if(generateDagger != null  && generateDagger) {
+            component.inject(this)
+        }
     }
 
     fun checkInternetConnectivity() {
