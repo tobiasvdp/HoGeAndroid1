@@ -24,30 +24,27 @@ class ShowRepository(val app: ScrobleApplication) {
     @Inject
     lateinit var preferenceService: PreferenceService
 
-    var trendingShows: LiveData<List<tech.gim.scroble.model.TrendingShow>>
-    var popularShows: LiveData<List<tech.gim.scroble.model.PopularShow>>
-    var mostViewedShows: LiveData<List<tech.gim.scroble.model.MostViewedShow>>
-    var mostRecomendedShows: LiveData<List<tech.gim.scroble.model.MostRecomendedShow>>
-    var mostAnticipatedShows: LiveData<List<tech.gim.scroble.model.MostAnticipatedShow>>
-
     init {
         app.component?.inject(this)
-        trendingShows = Transformations.map(showDatabaseDAO.getTrendingShows()) {
-            it.map { trendingShow -> Mappers.mapToDomain(trendingShow) }
-        }
-        mostViewedShows = Transformations.map(showDatabaseDAO.getMostViewedShows()) {
-            it.map { show -> Mappers.mapToDomain(show) }
-        }
-        mostRecomendedShows = Transformations.map(showDatabaseDAO.getMostRecommendedShows()) {
-            it.map { show -> Mappers.mapToDomain(show) }
-        }
-        mostAnticipatedShows = Transformations.map(showDatabaseDAO.getMostAnticipatedShows()) {
-            it.map { show -> Mappers.mapToDomain(show) }
-        }
-        popularShows = Transformations.map(showDatabaseDAO.getPopularShows()) {
-            it.map { show -> Mappers.mapToDomain(show) }
-        }
     }
+
+    fun getTrendingShows() = Transformations.map(showDatabaseDAO.getTrendingShows()) {
+        it.map { trendingShow -> Mappers.mapToDomain(trendingShow) }
+    }
+    fun getMostViewedShows() = Transformations.map(showDatabaseDAO.getMostViewedShows()) {
+        it.map { show -> Mappers.mapToDomain(show) }
+    }
+    fun getMostRecommendedShows() = Transformations.map(showDatabaseDAO.getMostRecommendedShows()) {
+        it.map { show -> Mappers.mapToDomain(show) }
+    }
+    fun getMostAnticipagedShows() = Transformations.map(showDatabaseDAO.getMostAnticipatedShows()) {
+        it.map { show -> Mappers.mapToDomain(show) }
+    }
+
+    fun getPopularShows() = Transformations.map(showDatabaseDAO.getPopularShows()) {
+        it.map { show -> Mappers.mapToDomain(show) }
+    }
+
 
     suspend fun refreshTrendingShows() {
         withContext(context = Dispatchers.IO) {

@@ -25,31 +25,31 @@ class ShowService(var app: ScrobleApplication) {
     fun getTrendingShows(): LiveData<List<TrendingShow>> {
         app.checkInternetConnectivity()
         coroutineScope.launch { repository.refreshTrendingShows() }
-        return repository.trendingShows
+        return repository.getTrendingShows()
     }
 
     fun getPopularShows(): LiveData<List<PopularShow>> {
         app.checkInternetConnectivity()
         coroutineScope.launch { repository.refreshPopularShows() }
-        return repository.popularShows
+        return repository.getPopularShows()
     }
 
     fun getMostViewedShows(): LiveData<List<MostViewedShow>> {
         app.checkInternetConnectivity()
         coroutineScope.launch { repository.refreshMostViewedShows() }
-        return repository.mostViewedShows
+        return repository.getMostViewedShows()
     }
 
     fun getMostRecommendedShows(): LiveData<List<MostRecomendedShow>> {
         app.checkInternetConnectivity()
         coroutineScope.launch { repository.refreshMostRecomendedShows() }
-        return repository.mostRecomendedShows
+        return repository.getMostRecommendedShows()
     }
 
     fun getMostAnticipatedShows(): LiveData<List<MostAnticipatedShow>> {
         app.checkInternetConnectivity()
         coroutineScope.launch { repository.refreshMostAnticipatedShows() }
-        return repository.mostAnticipatedShows
+        return repository.getMostAnticipagedShows()
     }
 
     fun getShowDetails(id: Int): LiveData<DetailedShow?> {
