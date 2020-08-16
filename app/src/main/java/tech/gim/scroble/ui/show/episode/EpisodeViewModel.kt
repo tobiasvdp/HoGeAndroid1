@@ -23,7 +23,7 @@ class EpisodeViewModel(private val context: ScrobleApplication) : AndroidViewMod
     lateinit var imageService: ImageService
 
     init {
-        context.component.inject(this)
+        context.component?.inject(this)
     }
 
     fun setEpisode(show: MinimizedShow?, se: Season?, ep: Episode?) {

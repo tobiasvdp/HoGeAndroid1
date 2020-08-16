@@ -21,7 +21,7 @@ class TrendingShowsViewModel(private val context: ScrobleApplication) : AndroidV
     lateinit var imageService: ImageService
 
     init {
-        context.component.inject(this)
+        context.component?.inject(this)
         shows = Transformations.map(showService.getTrendingShows()) { it.map { it.show } }
         showsWithImages = Transformations.switchMap(shows) {
             Transformations.map(imageService.getImagesForIds(it.map { it?.ids })) { img -> HelperFunctions.combineShowsAndImages(it, img) }

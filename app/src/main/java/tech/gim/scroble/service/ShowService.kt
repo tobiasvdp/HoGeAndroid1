@@ -19,7 +19,7 @@ class ShowService(var app: ScrobleApplication) {
     lateinit var repository: ShowRepository
 
     init {
-        app.component.inject(this)
+        app.component?.inject(this)
     }
 
     fun getTrendingShows(): LiveData<List<TrendingShow>> {

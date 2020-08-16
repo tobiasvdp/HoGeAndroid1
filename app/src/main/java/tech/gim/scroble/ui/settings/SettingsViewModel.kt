@@ -17,7 +17,7 @@ class SettingsViewModel(private val context: ScrobleApplication) : AndroidViewMo
     val onPeriodSelection = PeriodSelectionListener(this)
 
     init {
-        context.component.inject(this)
+        context.component?.inject(this)
         preferences = preferenceService.preferences
     }
 

@@ -10,7 +10,7 @@ class PreferenceService(var app: ScrobleApplication) {
     val preferences: Preferences
 
     init {
-        app.component.inject(this)
+        app.component?.inject(this)
         preferences = Preferences(
             storedPreferences.getString("pageSize", "27")!!,
             storedPreferences.getString("timePeriod", "weekly")!!

@@ -31,7 +31,7 @@ class ShowRepository(val app: ScrobleApplication) {
     var mostAnticipatedShows: LiveData<List<tech.gim.scroble.model.MostAnticipatedShow>>
 
     init {
-        app.component.inject(this)
+        app.component?.inject(this)
         trendingShows = Transformations.map(showDatabaseDAO.getTrendingShows()) {
             it.map { trendingShow -> Mappers.mapToDomain(trendingShow) }
         }

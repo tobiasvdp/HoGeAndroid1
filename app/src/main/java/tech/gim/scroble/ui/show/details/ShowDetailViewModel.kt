@@ -23,7 +23,7 @@ class ShowDetailViewModel(private val context: ScrobleApplication) : AndroidView
     lateinit var imageService: ImageService
 
     init {
-        context.component.inject(this)
+        context.component?.inject(this)
     }
 
     fun setShow(show: MinimizedShow?) {

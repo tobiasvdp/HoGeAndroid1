@@ -23,7 +23,7 @@ class SeasonViewModel(private val context: ScrobleApplication) : AndroidViewMode
     lateinit var imageService: ImageService
 
     init {
-        context.component.inject(this)
+        context.component?.inject(this)
     }
 
     fun setSeason(show: MinimizedShow?, se: Season?) {

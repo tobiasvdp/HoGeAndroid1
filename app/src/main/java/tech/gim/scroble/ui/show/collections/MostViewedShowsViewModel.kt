@@ -21,7 +21,7 @@ class MostViewedShowsViewModel(private val context: ScrobleApplication) : Androi
     lateinit var imageService: ImageService
 
     init {
-        context.component.inject(this)
+        context.component?.inject(this)
         shows = Transformations.map(showService.getMostViewedShows()) { it.map { it.show } }
         showsWithImages = Transformations.switchMap(shows) {
             Transformations.map(imageService.getImagesForIds(it.map { it?.ids })) { img -> HelperFunctions.combineShowsAndImages(it, img) }

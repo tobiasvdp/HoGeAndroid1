@@ -23,7 +23,7 @@ class ImageRepository(app: ScrobleApplication) {
     lateinit var dao: ImagesDatabaseDAO
 
     init {
-        app.component.inject(this)
+        app.component?.inject(this)
     }
 
     fun getImagesForShowId(ids: ReferenceData?): LiveData<ShowImages?> {

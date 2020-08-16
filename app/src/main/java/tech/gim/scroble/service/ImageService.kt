@@ -20,7 +20,7 @@ class ImageService(app: ScrobleApplication) {
     private var coroutineScope = CoroutineScope(mainJob + Dispatchers.Default)
 
     init {
-        app.component.inject(this)
+        app.component?.inject(this)
     }
 
     fun getImagesForId(ref: ReferenceData?): LiveData<ShowImages?> {
