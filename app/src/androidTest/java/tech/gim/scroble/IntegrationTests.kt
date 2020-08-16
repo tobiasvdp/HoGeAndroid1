@@ -62,11 +62,9 @@ class IntegrationTests {
     @ExperimentalCoroutinesApi
     @Test
     fun testAPi() {
-        val deferred = CompletableDeferred<DetailedShow>()
-        Mockito.`when`(traktApi.getDetailedShow(anyObject())).thenReturn(CompletableDeferred(DetailedShow("test")))
+        Mockito.`when`(showService.repository.traktApi.getDetailedShow(Mockito.anyString())).thenReturn(CompletableDeferred(DetailedShow("test")))
         val showDef = showService.repository.traktApi.getDetailedShow(1.toString())
         val show = showDef.getCompleted()
-
         assert(show.title.equals("test"))
     }
 
