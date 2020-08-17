@@ -14,6 +14,14 @@ import timber.log.Timber
 import java.lang.Exception
 import javax.inject.Inject
 
+/**
+ * Repository for images belonging to a show.
+ * The repository offers a way to query for images,
+ * and a function to request more for a certain show.
+ * This class wraps the database and api into one
+ * (allowing for offline/online)
+ * The actual images are stored by another library named 'Glide'
+ */
 class ImageRepository(app: ScrobleApplication) {
 
     @Inject

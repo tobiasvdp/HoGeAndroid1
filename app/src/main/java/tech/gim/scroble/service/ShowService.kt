@@ -10,6 +10,11 @@ import tech.gim.scroble.model.*
 import tech.gim.scroble.repository.ShowRepository
 import javax.inject.Inject
 
+/**
+ * Service for Shows
+ * Allowing for a show(parts) to be retrieved via observable
+ * Everytime a show(part) is requested, in the background an update for that data kicks off
+ */
 class ShowService(var app: ScrobleApplication) {
 
     private var mainJob = Job()

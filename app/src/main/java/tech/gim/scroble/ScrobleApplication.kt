@@ -8,18 +8,21 @@ import android.widget.Toast
 import tech.gim.scroble.dagger.ApplicationComponent
 import tech.gim.scroble.dagger.ApplicationModule
 import tech.gim.scroble.dagger.DaggerApplicationComponent
-import tech.gim.scroble.service.ShowService
 import timber.log.Timber
-import javax.inject.Inject
 
+/**
+ * Application context,
+ * Home to Dagger for dependency injection (that means singletons are true singletons troughout the app)
+ * And exposes functions using system resources (check on internet connectivity)
+ */
 class ScrobleApplication() : Application() {
     var component: ApplicationComponent? = null
     var cm: ConnectivityManager? = null
 
     init {
-            component = DaggerApplicationComponent.builder()
-                .applicationModule(ApplicationModule(this))
-                .build()
+        component = DaggerApplicationComponent.builder()
+            .applicationModule(ApplicationModule(this))
+            .build()
     }
 
     override fun onCreate() {

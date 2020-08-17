@@ -14,7 +14,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
@@ -38,10 +37,9 @@ import java.util.concurrent.TimeoutException
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
 @RunWith(MockitoJUnitRunner::class)
 class IntegrationTests {
-    //@get:Rule val mockitoRule = MockitoJUnit.rule()
+    // @get:Rule val mockitoRule = MockitoJUnit.rule()
     @get:Rule
     var instantTaskExecutorRule: InstantTaskExecutorRule? = InstantTaskExecutorRule()
 
@@ -93,22 +91,24 @@ class IntegrationTests {
 
         Mockito.`when`(showService.repository.traktApi.getTrendingShows(Mockito.any(), Mockito.any())).thenReturn(apiCall)
         Mockito.`when`(showService.repository.showDatabaseDAO.getTrendingShows()).thenReturn(databaseTrendingList)
-        Mockito.`when`(showService.repository.showDatabaseDAO.insertAllTrendingShows(anyObject())).then(Answer { invocation ->
-            val list = invocation.arguments[0] as List<tech.gim.scroble.model.entity.TrendingShow>
-            databaseTrendingList.postValue(list)
-        })
+        Mockito.`when`(showService.repository.showDatabaseDAO.insertAllTrendingShows(anyObject())).then(
+            Answer { invocation ->
+                val list = invocation.arguments[0] as List<tech.gim.scroble.model.entity.TrendingShow>
+                databaseTrendingList.postValue(list)
+            }
+        )
 
         val livedata = showService.getTrendingShows()
         Assert.assertEquals(null, livedata.value)
 
         apiCall.complete(
-            arrayOf(TrendingShow(Show("test", 1992, ReferenceData(1,"slug", 1,"1", 1, "1")), 10))
+            arrayOf(TrendingShow(Show("test", 1992, ReferenceData(1, "slug", 1, "1", 1, "1")), 10))
         )
 
         val data = livedata.getOrAwaitValue()
         Assert.assertEquals(1, data[0].traktId)
         Assert.assertEquals(10, data[0].watchers)
-        Assert.assertEquals(MinimizedShow("test", 1992, ReferenceData(1,"slug", 1,"1", 1, "1")), data[0].show)
+        Assert.assertEquals(MinimizedShow("test", 1992, ReferenceData(1, "slug", 1, "1", 1, "1")), data[0].show)
     }
 
     private fun <T> anyObject(): T {
@@ -141,10 +141,9 @@ class IntegrationTests {
         @Suppress("UNCHECKED_CAST")
         return data as T
     }
-
 }
 
-class TestModule(app: ScrobleApplication): ApplicationModule(app) {
+class TestModule(app: ScrobleApplication) : ApplicationModule(app) {
     override fun provideTraktApi(): TraktApi {
         return Mockito.mock(TraktApi::class.java)
     }

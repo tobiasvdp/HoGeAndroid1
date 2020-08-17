@@ -11,6 +11,10 @@ import tech.gim.scroble.model.MinimizedShow
 import tech.gim.scroble.model.MinimizedShowWithImages
 import timber.log.Timber
 
+/**
+ * Adaper used in Recylerviews for displaying shows.
+ * Because of the common usage, a lambda is requested to define what to do when the show_card is clicked on
+ */
 class ShowsRecyclerViewAdapter(var onClickHandler: (View, MinimizedShow?) -> Unit) : ListAdapter<MinimizedShowWithImages?, ShowsViewHolder>(ShowsDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowsViewHolder {
@@ -33,6 +37,10 @@ class ShowsRecyclerViewAdapter(var onClickHandler: (View, MinimizedShow?) -> Uni
     }
 }
 
+/**
+ * Holder cantaining the binding for a show_card,
+ * the is somewhat like a Fragment controller
+ */
 class ShowsViewHolder(val binding: MinimizedShowCardBinding) : RecyclerView.ViewHolder(binding.root) {
 
     companion object {
@@ -49,6 +57,10 @@ class ShowsViewHolder(val binding: MinimizedShowCardBinding) : RecyclerView.View
     }
 }
 
+/**
+ * Checks for the Recyclerview if the show has changed or not.
+ * Allows for more efficient replacing on screen (with animations!!)
+ */
 class ShowsDiffUtil() : DiffUtil.ItemCallback<MinimizedShowWithImages?>() {
     override fun areItemsTheSame(oldItem: MinimizedShowWithImages, newItem: MinimizedShowWithImages): Boolean {
         return newItem.show?.ids != null && oldItem.show?.ids?.trakt == newItem.show?.ids?.trakt

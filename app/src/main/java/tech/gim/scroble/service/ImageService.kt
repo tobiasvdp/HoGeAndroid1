@@ -11,6 +11,11 @@ import tech.gim.scroble.model.ShowImages
 import tech.gim.scroble.repository.ImageRepository
 import javax.inject.Inject
 
+/**
+ * Service for Images
+ * Allowing images src's for a show to be retrieved via observable
+ * Image data is retrieved only once, and fetched when not found
+ */
 class ImageService(app: ScrobleApplication) {
 
     @Inject

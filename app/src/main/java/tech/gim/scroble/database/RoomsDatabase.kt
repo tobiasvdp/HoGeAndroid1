@@ -6,6 +6,10 @@ import androidx.room.TypeConverters
 import tech.gim.scroble.model.entity.*
 import tech.gim.scroble.utils.TypeConvertors
 
+/**
+ * Rooms definition,
+ * defining all entities, version of the database and what dao's can access th sqllite database
+ */
 @Database(entities = [DetailedShow::class, TrendingShow::class, MostAnticipatedShow::class, MostRecomendedShow::class, MostViewedShow::class, PopularShow::class, ShowImages::class, Season::class, Episode::class, DetailedEpisode::class, SearchedShow::class], version = 7, exportSchema = true)
 @TypeConverters(TypeConvertors::class)
 abstract class RoomsDatabase : RoomDatabase() {

@@ -7,6 +7,10 @@ import retrofit2.http.Query
 import tech.gim.scroble.model.dto.*
 import tech.gim.scroble.model.dto.Show
 
+/**
+ * Retrofit api for trakt.tv service
+ * This api provides a navigable REST service for show data
+ */
 interface TraktApi {
 
     @GET("/search/show")

@@ -15,6 +15,13 @@ import java.lang.Exception
 import java.lang.RuntimeException
 import javax.inject.Inject
 
+/**
+ * Repository for shows.
+ * The repository offers a way to query for shows,
+ * and a function to request more details about a show.
+ * This class wraps the database and api into one
+ * (allowing for offline/online)
+ */
 class ShowRepository(val app: ScrobleApplication) {
 
     @Inject
@@ -44,7 +51,6 @@ class ShowRepository(val app: ScrobleApplication) {
     fun getPopularShows() = Transformations.map(showDatabaseDAO.getPopularShows()) {
         it.map { show -> Mappers.mapToDomain(show) }
     }
-
 
     suspend fun refreshTrendingShows() {
         withContext(context = Dispatchers.IO) {

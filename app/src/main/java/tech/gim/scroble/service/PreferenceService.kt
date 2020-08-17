@@ -4,6 +4,12 @@ import android.content.SharedPreferences
 import tech.gim.scroble.ScrobleApplication
 import tech.gim.scroble.model.Preferences
 
+/**
+ * Service for Preferences
+ * Preferences can be freely changed during the application,
+ * But a @{commitPreferenceChanges} is required to persist the changes
+ * This service does not abstragate away the data layer to repository, because this is an android feature
+ */
 class PreferenceService(var app: ScrobleApplication) {
 
     private val storedPreferences: SharedPreferences = app.getSharedPreferences("ScroblePreferences", 0)

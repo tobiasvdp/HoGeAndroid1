@@ -5,9 +5,14 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 //apply plugin: 'org.jlleitschuh.gradle.ktlint'
 apply plugin: 'org.jmailen.kotlinter'
+apply plugin : 'org.jetbrains.dokka'
 
 kotlinter {
     disabledRules = ["no-wildcard-imports"]
+}
+
+tasks.dokkaHtml {
+    outputDirectory = "$buildDir/dokka"
 }
 
 android {

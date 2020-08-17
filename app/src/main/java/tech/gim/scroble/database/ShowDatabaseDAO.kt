@@ -4,6 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import tech.gim.scroble.model.entity.*
 
+/**
+ * Rooms dao for creating queries on the datatables
+ * Queries shows, seasons and episodes to find details about a show
+ */
 @Dao
 interface ShowDatabaseDAO {
     @Query("SELECT * FROM SEASONS WHERE SHOW_ID = :showId")

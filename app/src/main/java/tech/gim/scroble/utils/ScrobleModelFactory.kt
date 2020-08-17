@@ -6,6 +6,10 @@ import androidx.lifecycle.ViewModelProvider
 import tech.gim.scroble.ScrobleApplication
 import java.lang.RuntimeException
 
+/**
+ * Extension on @{ViewModelProvider.Factory} to allow for AndroidViewModels
+ * (injects application context as construction param)
+ */
 class ScrobleModelFactory(private val app: ScrobleApplication) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (AndroidViewModel::class.java.isAssignableFrom(modelClass)) {

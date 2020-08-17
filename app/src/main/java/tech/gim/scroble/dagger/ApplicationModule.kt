@@ -20,6 +20,11 @@ import tech.gim.scroble.service.PreferenceService
 import tech.gim.scroble.service.ShowService
 import javax.inject.Singleton
 
+/**
+ * Dagger module, for defining and creating all injectable services
+ * These @{@Singleton} object are relative to the application,
+ * meaning only one of them exists in the entire application
+ */
 @Module
 open class ApplicationModule(val app: ScrobleApplication) {
     @Provides @Singleton fun provideApp() = app

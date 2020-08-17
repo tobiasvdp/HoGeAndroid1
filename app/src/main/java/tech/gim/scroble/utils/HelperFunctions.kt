@@ -7,6 +7,9 @@ import tech.gim.scroble.model.MinimizedShow
 import tech.gim.scroble.model.MinimizedShowWithImages
 import tech.gim.scroble.model.ShowImages
 
+/**
+ * Class containing common functions use throughout the app
+ */
 class HelperFunctions {
     companion object {
         fun calculateNoOfColumns(context: Context?, columnWidthDp: Float): Int {

@@ -7,6 +7,10 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import tech.gim.scroble.model.entity.ShowImages
 
+/**
+ * Rooms dao for creating queries on the datatables
+ * Queries @{ShowImages} to find related images to a show
+ */
 @Dao
 interface ImagesDatabaseDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -10,6 +10,10 @@ import tech.gim.scroble.model.ShowImages
 import java.time.LocalDateTime
 import java.time.ZoneOffset.UTC
 
+/**
+ * All convertors for 'Rooms' to allow models to be mapped to sqllite compatible structures.
+ * Sqllite only support base column types and flatStructures, relational connections are to be avoided
+ */
 class TypeConvertors {
 
     @TypeConverter

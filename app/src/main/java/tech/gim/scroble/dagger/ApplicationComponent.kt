@@ -14,6 +14,10 @@ import tech.gim.scroble.ui.show.episode.EpisodeViewModel
 import tech.gim.scroble.ui.show.season.SeasonViewModel
 import javax.inject.Singleton
 
+/**
+ * Dagger component to build the graph where modules can provide injection
+ * this component must call @{inject} on the related class for all injectable component to become available
+ */
 @Component(modules = [ApplicationModule::class])
 @Singleton
 interface ApplicationComponent {
